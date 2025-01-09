@@ -1,5 +1,5 @@
 {
-  "version": "0.0.1",
+  "version": "0.0.1-alfa",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -10,6 +10,18 @@
   "engines": {
     "node": ">=10"
   },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "homepage": "",
+  "keywords": [
+    "node",
+    "keystroke",
+    "keyboard",
+    "area2",
+    "a2"
+  ],
   "scripts": {
     "start": "tsdx watch",
     "build": "tsdx build",

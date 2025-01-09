@@ -1,3 +1,4 @@
+//TODO: Remove sensitive data from this file
 export interface IBaseKeystrokeCollection {
     appContext?:        string;
     keyArea:            number[];
