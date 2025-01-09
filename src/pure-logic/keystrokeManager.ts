@@ -14,7 +14,6 @@ export class KeystrokeManager {
     handleInputChange(newValue: string) {
         this.typingData = {
             ...this.typingData,
-            text: newValue,
             length: newValue.length,
         };
     }

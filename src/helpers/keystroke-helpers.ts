@@ -22,7 +22,6 @@ export const getInitialTypingData = (): IKeystrokeCollection => ({
     startUnixTime: null,
     study: "demo",
     task: "free",
-    text: "",
     textStructure: [],
     time: getTimeOfDay(new Date().getHours()),
     timeZone: new Date().getTimezoneOffset() / -60,

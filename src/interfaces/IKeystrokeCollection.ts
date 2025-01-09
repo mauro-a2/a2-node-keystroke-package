@@ -9,7 +9,6 @@ export interface IBaseKeystrokeCollection {
     season:             Season;
     sessionID:          string;
     startUnixTime:      number | null;
-    text:               string;
     time:               TimeOfDay;
     timeZone:           number;
     weekday:            DayOfWeek;
@@ -20,7 +19,6 @@ export interface IKeystrokeCollection extends IBaseKeystrokeCollection{
     qualityCheck:       string[];   // Extra
     setting:            string;     // Extra
     source:             string;     // Extra
-    startTimestamp?:    string;     // Custom
     study:              string;
     task:               string;
     textStructure:      string[];   // Extra
