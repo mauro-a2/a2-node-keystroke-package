@@ -1,6 +1,6 @@
 {
   "name": "a2-node-keystroke-package",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "author": "Mauro Ruiz",
   "module": "dist/a2-node-keystroke-package.esm.js",
