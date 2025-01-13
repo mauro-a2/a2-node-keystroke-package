@@ -5,4 +5,4 @@ export {
     IosKeystrokeManager 
 } from './pure-logic';
 
-export type * from './interfaces';
+export * from './interfaces';
