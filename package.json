@@ -25,6 +25,9 @@
       "main"
     ]
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
   "peerDependencies": {},
   "engines": {
     "node": ">=10"
