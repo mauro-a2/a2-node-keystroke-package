@@ -1,5 +1,5 @@
 {
-  "name": "a2-node-keystroke-package",
+  "name": "@area2-ai/a2-node-keystroke-package",
   "version": "0.1.0",
   "type": "module",
   "author": "Mauro Ruiz",
@@ -13,10 +13,6 @@
   ],
   "license": "MIT",
   "homepage": "https://docs.area2-ai.com/",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/mauro-a2/a2-node-keystroke-package.git"
-  },
   "files": [
     "dist/"
   ],
@@ -43,7 +39,7 @@
     "size": "size-limit",
     "analyze": "size-limit --why",
     "push:npm": "np",
-    "login-npm": "npm login",
+    "login:npm": "npm login",
     "test-who": "npm whoami"
   },
   "husky": {
