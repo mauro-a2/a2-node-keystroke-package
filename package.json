@@ -42,7 +42,9 @@
     "prepare": "tsdx build",
     "size": "size-limit",
     "analyze": "size-limit --why",
-    "push:npm": "np"
+    "push:npm": "np",
+    "login-npm": "npm login",
+    "test-who": "npm whoami"
   },
   "husky": {
     "hooks": {
