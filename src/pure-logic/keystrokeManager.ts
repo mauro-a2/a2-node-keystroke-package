@@ -11,14 +11,14 @@ export class KeystrokeManager {
         return this.isTypingSessionActive;
     }
 
-    handleInputChange(newValue: string) {
+    processInputChange(newValue: string) {
         this.typingData = {
             ...this.typingData,
             length: newValue.length,
         };
     }
 
-    handleKeydown(keyPressed: string) {
+    processKeydown(keyPressed: string) {
         const temporalStartUnixTime = Date.now() * 1000; //* Microseconds
 
         if (!this.isTypingSessionActive) {
@@ -41,7 +41,7 @@ export class KeystrokeManager {
         };
     }
 
-    handleKeyup(keyPressed: string) {
+    processKeyup(keyPressed: string) {
         if (!(keyPressed in this.openKeyEntries)) return;
 
         const keyEntry = this.openKeyEntries[keyPressed];
@@ -53,7 +53,6 @@ export class KeystrokeManager {
                 ...this.typingData.releaseTimes,
                 (Date.now() * 1000) - this.typingData.startUnixTime!, //* Compute relative time in microseconds
             ],
-            keyCode: [...this.typingData.keyCode, keyEntry.keyCode],
             keyArea: [...this.typingData.keyArea, keyEntry.keyArea],
             keyTypes: [...this.typingData.keyTypes, keyEntry.keyType],
         };

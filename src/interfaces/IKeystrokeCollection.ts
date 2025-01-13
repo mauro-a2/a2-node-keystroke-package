@@ -1,8 +1,6 @@
-//TODO: Remove sensitive data from this file
 export interface IBaseKeystrokeCollection {
     appContext?:        string;
     keyArea:            number[];
-    keyCode:            number[];
     keyTypes:           string[];
     pressTimes:         number[];
     releaseTimes:       number[];

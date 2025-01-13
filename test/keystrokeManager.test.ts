@@ -4,7 +4,6 @@ import { getInitialTypingData } from '../src/helpers';
 
 jest.mock('../src/helpers', () => ({
   getInitialTypingData: jest.fn(() => ({
-    text: '',
     length: 0,
     pressTimes: [],
     releaseTimes: [],
@@ -35,17 +34,16 @@ describe('KeystrokeManager', () => {
   });
 
   it('should update typing data on handleInputChange', () => {
-    manager.handleInputChange('hello');
+    manager.processInputChange('hello');
     expect(manager['typingData']).toEqual({
       ...getInitialTypingData(),
-      text: 'hello',
       length: 5,
     });
   });
 
   it('should handle keydown and start a typing session', () => {
     jest.spyOn(Date, 'now').mockReturnValue(1000); // Mock time for predictable results
-    manager.handleKeydown('a');
+    manager.processKeydown('a');
 
     expect(manager.getIsTypingSessionActive).toBe(true);
     expect(manager['typingData'].startUnixTime).toBe(1000 * 1000); // Microseconds
@@ -60,32 +58,30 @@ describe('KeystrokeManager', () => {
 
   it('should handle keyup and update typing data', () => {
     jest.spyOn(Date, 'now').mockReturnValue(1000);
-    manager.handleKeydown('a');
+    manager.processKeydown('a');
     jest.spyOn(Date, 'now').mockReturnValue(2000); // Mock time again
-    manager.handleKeyup('a');
+    manager.processKeyup('a');
 
     expect(manager['typingData'].pressTimes).toEqual([0]);
     expect(manager['typingData'].releaseTimes).toEqual([1000 * 1000]);
-    expect(manager['typingData'].keyCode).toEqual([97]);
     expect(manager['typingData'].keyArea).toEqual(['alphabet']);
     expect(manager['typingData'].keyTypes).toEqual(['lowercase']);
     expect(manager['openKeyEntries']).not.toHaveProperty('a');
   });
 
   it('should end the typing session and return typing data', () => {
-    manager.handleInputChange('test');
+    manager.processInputChange('test');
     const data = manager.endTypingSession();
 
     expect(manager.getIsTypingSessionActive).toBe(false);
     expect(data).toEqual({
       ...getInitialTypingData(),
-      text: 'test',
       length: 4,
     });
   });
 
   it('should reset typing data', () => {
-    manager.handleInputChange('reset test');
+    manager.processInputChange('reset test');
     manager.resetTypingData();
 
     expect(manager['typingData']).toEqual(getInitialTypingData());

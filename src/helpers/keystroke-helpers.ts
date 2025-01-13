@@ -9,7 +9,6 @@ import {
 export const getInitialTypingData = (): IKeystrokeCollection => ({
     // startTimestamp: getFormattedTimestamp(),
     keyArea: [],
-    keyCode: [],
     keyTypes: [],
     length: 0,
     pressTimes: [],
