@@ -1,6 +1,6 @@
 {
   "name": "@area2-ai/a2-node-keystroke-package",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "module",
   "author": "Mauro Ruiz",
   "module": "dist/a2-node-keystroke-package.esm.js",
