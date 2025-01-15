@@ -19,7 +19,7 @@ export class KeystrokeManager {
     }
 
     processKeydown(keyPressed: string) {
-        const temporalStartUnixTime = Date.now() * 1000; //* Microseconds
+        const temporalStartUnixTime = Date.now() / 1000; //* Seconds
 
         if (!this.isTypingSessionActive) {
             this.isTypingSessionActive = true;
@@ -32,7 +32,7 @@ export class KeystrokeManager {
         //? Ensure a key press event is not duplicated
         if (keyPressed in this.openKeyEntries) return;
 
-        const pressTime = (Date.now() * 1000) - this.typingData.startUnixTime!; //* Compute relative time in microseconds
+        const pressTime = (Date.now() / 1000) - this.typingData.startUnixTime!; //* Compute relative time in seconds
         this.openKeyEntries[keyPressed] = {
             pressTime,
             keyCode: getKeyCode(keyPressed),
@@ -51,7 +51,7 @@ export class KeystrokeManager {
             pressTimes: [...this.typingData.pressTimes, keyEntry.pressTime],
             releaseTimes: [
                 ...this.typingData.releaseTimes,
-                (Date.now() * 1000) - this.typingData.startUnixTime!, //* Compute relative time in microseconds
+                (Date.now() / 1000) - this.typingData.startUnixTime!, //* Compute relative time in seconds
             ],
             keyArea: [...this.typingData.keyArea, keyEntry.keyArea],
             keyTypes: [...this.typingData.keyTypes, keyEntry.keyType],

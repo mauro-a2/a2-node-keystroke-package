@@ -46,7 +46,7 @@ describe('KeystrokeManager', () => {
     manager.processKeydown('a');
 
     expect(manager.getIsTypingSessionActive).toBe(true);
-    expect(manager['typingData'].startUnixTime).toBe(1000 * 1000); // Microseconds
+    expect(manager['typingData'].startUnixTime).toBe(1000 / 1000); // seconds
     expect(manager['openKeyEntries']).toHaveProperty('a');
     expect(manager['openKeyEntries']['a']).toEqual({
       pressTime: 0,
@@ -63,7 +63,7 @@ describe('KeystrokeManager', () => {
     manager.processKeyup('a');
 
     expect(manager['typingData'].pressTimes).toEqual([0]);
-    expect(manager['typingData'].releaseTimes).toEqual([1000 * 1000]);
+    expect(manager['typingData'].releaseTimes).toEqual([1000 / 1000]);
     expect(manager['typingData'].keyArea).toEqual(['alphabet']);
     expect(manager['typingData'].keyTypes).toEqual(['lowercase']);
     expect(manager['openKeyEntries']).not.toHaveProperty('a');

@@ -36,7 +36,7 @@ export class AndroidKeystrokeManager {
 
         if (!this.isTypingSessionActive) { return }
 
-        const diff = (Date.now() * 1000) - this.typingData.startUnixTime!; //* Microseconds
+        const diff = (Date.now() / 1000) - this.typingData.startUnixTime!; //* Seconds
 
         this.typingData = {
             ...this.typingData,
@@ -65,7 +65,7 @@ export class AndroidKeystrokeManager {
 
         if (keyPressed.length <= 1) { return }
 
-        const diff = (Date.now() * 1000) - this.typingData.startUnixTime!; //* Microseconds
+        const diff = (Date.now() / 1000) - this.typingData.startUnixTime!; //* Seconds
         let autocorrectedWord;
 
         //? If they are the same, it was already a correction
@@ -110,7 +110,7 @@ export class AndroidKeystrokeManager {
 
     processKeydown(target: HTMLInputElement) {
         this.performanceStart = performance.now();
-        const temporalStartUnixTime = Date.now() * 1000; //* Microseconds
+        const temporalStartUnixTime = Date.now() / 1000; //* Seconds
 
         if (!this.isTypingSessionActive) {
             this.isTypingSessionActive = true;
@@ -119,12 +119,12 @@ export class AndroidKeystrokeManager {
                 textField: getInputType(target),
                 keyboardArea: getKeyboardArea(),
                 startUnixTime: temporalStartUnixTime, //* Set start time only once
-                pressTimes: [...this.typingData.pressTimes, 0], //* Compute relative time in microseconds
+                pressTimes: [...this.typingData.pressTimes, 0], //* Compute relative time in seconds
             }
             return;
         }
 
-        const pressTime = (Date.now() * 1000) - this.typingData.startUnixTime!; //* Compute relative time in microseconds
+        const pressTime = (Date.now() / 1000) - this.typingData.startUnixTime!; //* Compute relative time in seconds
 
         this.typingData = {
             ...this.typingData,
@@ -147,7 +147,7 @@ export class AndroidKeystrokeManager {
         const performanceEnd = performance.now();
         this.typingData = {
             ...this.typingData,
-            releaseTimes: [...this.typingData.releaseTimes, (Date.now() * 1000) - this.typingData.startUnixTime!], //* Compute relative time in microseconds
+            releaseTimes: [...this.typingData.releaseTimes, (Date.now() / 1000) - this.typingData.startUnixTime!], //* Compute relative time in seconds
             performance: [...this.typingData.performance, (performanceEnd - this.performanceStart)], //* Milliseconds
             keyArea: [...this.typingData.keyArea, keyArea],
             keyTypes: [...this.typingData.keyTypes, keyType],
