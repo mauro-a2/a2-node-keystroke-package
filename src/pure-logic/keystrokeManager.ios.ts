@@ -29,7 +29,7 @@ export class IosKeystrokeManager {
 
         if (!this.isTypingSessionActive) { return }
 
-        const diff = (Date.now() * 1000) - this.typingData.startUnixTime!; //* Microseconds
+        const diff = (Date.now() / 1000) - this.typingData.startUnixTime!; //* Seconds
 
         this.typingData = {
             ...this.typingData,
@@ -47,7 +47,7 @@ export class IosKeystrokeManager {
 
         if (textInputValue.startsWith(this.previousText)) { return }
 
-        const diff = (Date.now() * 1000) - this.typingData.startUnixTime!; //* Microseconds
+        const diff = (Date.now() / 1000) - this.typingData.startUnixTime!; //* Seconds
 
         const autocorrectedWord = getDifferenceBetweenWords(textInputValue, this.previousText);
 
@@ -82,7 +82,7 @@ export class IosKeystrokeManager {
 
         if ((newValue.length - textSnapshot.length) === 1 || newValue === textSnapshot) { return }
 
-        const diff = (Date.now() * 1000) - this.typingData.startUnixTime!; //* Microseconds
+        const diff = (Date.now() / 1000) - this.typingData.startUnixTime!; //* Seconds
 
         const predictedWord = getDifferenceBetweenWords(newValue, textSnapshot);
 
@@ -100,7 +100,7 @@ export class IosKeystrokeManager {
 
     processKeydown(keyPressed: string, target: HTMLInputElement) {
         this.performanceStart = performance.now();
-        const temporalStartUnitTime = Date.now() * 1000; //* Microseconds
+        const temporalStartUnitTime = Date.now() / 1000; //* Seconds
 
         if (keyPressed === 'Backspace') { this.backspaceWasPressed = true }
 
@@ -120,7 +120,7 @@ export class IosKeystrokeManager {
         //? Ensure a key press event is not duplicated
         if (keyPressed in this.openKeyEntry) { return }
 
-        const pressTime = (Date.now() * 1000) - this.typingData.startUnixTime!; //* Compute relative time in microseconds
+        const pressTime = (Date.now() / 1000) - this.typingData.startUnixTime!; //* Compute relative time in seconds
 
         this.handleAutocorrectionTrigger(keyPressed, target.value);
 
@@ -151,7 +151,7 @@ export class IosKeystrokeManager {
         this.typingData = {
             ...this.typingData,
             pressTimes: [...this.typingData.pressTimes, keyEntry.pressTime],
-            releaseTimes: [...this.typingData.releaseTimes, (Date.now() * 1000) - this.typingData.startUnixTime!], //* Compute relative time in microseconds
+            releaseTimes: [...this.typingData.releaseTimes, (Date.now() / 1000) - this.typingData.startUnixTime!], //* Compute relative time in seconds
             keyArea: [...this.typingData.keyArea, keyEntry.keyArea],
             keyTypes: [...this.typingData.keyTypes, keyEntry.keyType],
             emojis: [...this.typingData.emojis, ...(emojiUnicode ? [emojiUnicode] : [])],
